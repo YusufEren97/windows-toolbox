@@ -1,0 +1,64 @@
+do {
+    Clear-Host
+    $ascii = @'
+  ████████╗ ██████╗  ██████╗ ██╗     ██████╗  ██████╗ ██╗  ██╗
+  ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔══██╗██╔═══██╗╚██╗██╔╝
+     ██║   ██║   ██║██║   ██║██║     ██████╔╝██║   ██║ ╚███╔╝ 
+     ██║   ██║   ██║██║   ██║██║     ██╔══██╗██║   ██║ ██╔██╗ 
+     ██║   ╚██████╔╝╚██████╔╝███████╗██████╔╝╚██████╔╝██╔╝ ██╗
+     ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
+'@
+    
+    Write-Host $ascii -ForegroundColor Yellow
+    Write-Host "               [ Coded by YusufEren97 ]" -ForegroundColor Gray
+    Write-Host "  --------------------------------------------------" -ForegroundColor DarkGray
+    Write-Host ""
+    
+    Write-Host "   [1] Port Killer V1.0" -ForegroundColor White
+    Write-Host "   [2] System Cleaner V1.1" -ForegroundColor White
+    Write-Host "   [3] Windows/Office Activation (MAS)" -ForegroundColor Cyan
+    Write-Host "   [4] Exit" -ForegroundColor Red
+    Write-Host ""
+    
+    Write-Host "  --------------------------------------------------" -ForegroundColor DarkGray
+    $choice = Read-Host "   Your choice (1-4)"
+
+    switch ($choice) {
+        "1" {
+            $path = "$env:temp\portkiller.bat"
+            $url = "https://yusuferenseyrek.com.tr/portkiller.bat"
+            Write-Host "`n   [+] " -NoNewline -ForegroundColor Green
+            Write-Host "Downloading and launching Port Killer..." -ForegroundColor Gray
+            Invoke-WebRequest $url -OutFile $path
+            Start-Process $path -Wait -Verb RunAs
+            Write-Host "`n   Operation completed. Press any key to continue..." -ForegroundColor Gray
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        "2" {
+            $path = "$env:temp\cleaner.bat"
+            $url = "https://yusuferenseyrek.com.tr/cleaner.bat"
+            Write-Host "`n   [+] " -NoNewline -ForegroundColor Green
+            Write-Host "Downloading and launching System Cleaner..." -ForegroundColor Gray
+            Invoke-WebRequest $url -OutFile $path
+            Start-Process $path -Wait -Verb RunAs
+            Write-Host "`n   Operation completed. Press any key to continue..." -ForegroundColor Gray
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        "3" {
+            Write-Host "`n   [+] " -NoNewline -ForegroundColor Cyan
+             Write-Host "Running Activation Script (MAS)..." -ForegroundColor Gray
+            irm https://get.activated.win | iex
+            Write-Host "`n   Press any key to return to menu..." -ForegroundColor Gray
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        "4" {
+            Write-Host "`n   [!] Shutting down Toolbox..." -ForegroundColor Red
+            Start-Sleep -Seconds 1
+            break
+        }
+        Default {
+            Write-Host "`n   [!] Invalid choice, please try again." -ForegroundColor Red
+            Start-Sleep -Seconds 1
+        }
+    }
+} while ($choice -ne "4")

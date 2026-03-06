@@ -1,0 +1,5 @@
+# Force UTF-8 encoding for batch files to preserve ASCII art
+*.bat text eol=lf encoding=utf-8
+
+# Force UTF-8 for PowerShell scripts
+toolbox text eol=lf encoding=utf-8
