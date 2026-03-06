@@ -6,7 +6,7 @@
 
 A powerful Windows utility toolkit that runs directly from PowerShell. Includes port management, system cleaning, and Windows/Office activation tools.
 
-## 🚀 Quick Start
+## --> Quick Start
 
 **One-line install — just paste into PowerShell:**
 
