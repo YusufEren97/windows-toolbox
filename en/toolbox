@@ -1,3 +1,20 @@
+# Windows PowerShell UTF-8 encoding fix
+# Uncomment the block below if this script is hosted on a web server
+# and called via "irm <url> | iex". Update the URL accordingly.
+#
+# if ($env:TOOLBOX_UTF8 -ne "1") {
+#     $env:TOOLBOX_UTF8 = "1"
+#     $bytes = (New-Object System.Net.WebClient).DownloadData("https://yusuferenseyrek.com.tr/toolbox-en")
+#     $script = [System.Text.Encoding]::UTF8.GetString($bytes)
+#     Invoke-Expression $script
+#     $env:TOOLBOX_UTF8 = $null
+#     return
+# }
+# $env:TOOLBOX_UTF8 = $null
+#
+# [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+# [Console]::InputEncoding = [System.Text.Encoding]::UTF8
+
 do {
     Clear-Host
     $ascii = @'

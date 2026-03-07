@@ -1,99 +1,107 @@
-# 🛠️ Toolbox
+# Toolbox
 
-![Toolbox](image/toolbox.png)
-![Port Killer](image/portkiller.png)
-![System Cleaner](image/cleaner.png)
+<p align="center">
+  <img src="image/toolbox.png" alt="Toolbox" width="600">
+</p>
 
-A powerful Windows utility toolkit that runs directly from PowerShell. Includes port management, system cleaning, and Windows/Office activation tools.
+A lightweight Windows utility toolkit that runs directly from PowerShell — no installation required. Provides port management, system cleaning, and Windows/Office activation in a single interactive menu.
 
-## --> Quick Start
+Available in **English** and **Turkish**.
 
-**One-line install — just paste into PowerShell:**
+---
+
+## Quick Start
+
+Paste one of the following commands into PowerShell and press Enter:
 
 ```powershell
 irm yusuferenseyrek.com.tr/toolbox | iex
 ```
 
-## 📦 Modules
+> Requires **Administrator privileges** for full functionality.
 
-### 1. Port Killer V1.0
-Manage and kill processes occupying ports on your system.
+---
 
-- **Kill Port** — Terminate the process using a specific port
-- **Query Port** — View details (PID, process name) of a port
-- **List All Ports** — Show all listening ports with PID info
-- **Safety Protection** — Critical system ports (53, 135, 139, 445, 3389) are blocked from being killed
+## Modules
 
-### 2. System Cleaner V1.1
-Free up disk space and flush caches with three cleaning modes:
+### Port Killer v1.0
 
-| Mode | What it cleans |
-|------|---------------|
-| **Quick** | User Temp, Windows Temp, Prefetch, Recycle Bin, DNS Cache |
-| **Deep** | Everything in Quick + Error Reports (WER) + System Logs |
-| **Custom** | Choose specific areas to clean |
+Manage and terminate processes occupying network ports.
 
-### 3. Windows/Office Activation (MAS)
-Runs the [Microsoft Activation Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) tool for Windows and Office activation.
+| Feature | Description |
+|---------|-------------|
+| Kill Port | Terminate the process bound to a specific port |
+| Query Port | View PID and process name for a given port |
+| List All Ports | Display all listening ports with PID details |
+| Safety Protection | Critical system ports (53, 135, 139, 445, 3389) are protected |
 
-## 📁 Project Structure
+<img src="image/portkiller.png" alt="Port Killer" width="500">
+
+### System Cleaner v1.1
+
+Free up disk space and flush caches with three cleaning modes.
+
+| Mode | Targets |
+|------|---------|
+| Quick | User Temp, Windows Temp, Prefetch, Recycle Bin, DNS Cache |
+| Deep | All of the above + Windows Error Reports + System Logs |
+| Custom | Select specific areas to clean individually |
+
+<img src="image/cleaner.png" alt="System Cleaner" width="500">
+
+### Windows/Office Activation (MAS)
+
+Launches [Microsoft Activation Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) for Windows and Office activation.
+
+---
+
+## Project Structure
 
 ```
 toolbox/
-├── tr/                    # 🇹🇷 Turkish version
-│   ├── toolbox            # Main menu (PowerShell)
+├── tr/                    # Turkish version
+│   ├── toolbox            # Main menu script
 │   ├── portkiller.bat     # Port Killer module
 │   └── cleaner.bat        # System Cleaner module
-├── en/                    # 🇬🇧 English version
-│   ├── toolbox            # Main menu (PowerShell)
+├── en/                    # English version
+│   ├── toolbox            # Main menu script
 │   ├── portkiller.bat     # Port Killer module
 │   └── cleaner.bat        # System Cleaner module
 ├── image/                 # Screenshots
+│   ├── toolbox.png
 │   ├── portkiller.png
 │   └── cleaner.png
 └── README.md
 ```
 
-## ⚠️ Encoding Notice
+---
 
-This project uses **UTF-8** encoding for ASCII art to display correctly.
+## Encoding & Compatibility
 
-| Method | Status | Notes |
-|--------|--------|-------|
-| `irm \| iex` | ✅ Works | Recommended way to use |
-| `git clone` | ✅ Works | Encoding is preserved |
-| GitHub ZIP download | ⚠️ May break | See instructions below |
-| FileZilla / FTP | ⚠️ May break | See instructions below |
+Both versions include a built-in UTF-8 encoding fix. The toolbox works correctly on **PowerShell 5.1 (Windows PowerShell)** and **PowerShell 7+** without any additional configuration.
 
-### 📥 If you downloaded via ZIP or FTP and ASCII art looks broken:
+If you download the project as a ZIP or via FTP and the ASCII art appears broken:
 
-**Notepad++ users:**
-1. Open the `.bat` file in Notepad++
-2. Go to **Encoding** → **Convert to UTF-8**
-3. Save the file
+- **Notepad++** — Encoding → Convert to UTF-8, then save.
+- **VS Code** — Click the encoding label in the status bar → Reopen with Encoding → UTF-8.
+- **FileZilla** — Set the transfer type to **Binary** under Edit → Settings → Transfers → File Types.
 
-**VS Code users:**
-1. Open the `.bat` file
-2. Click the encoding name in the bottom-right corner (e.g. `UTF-8` or `Windows 1252`)
-3. Select **Reopen with Encoding** → **UTF-8**
+> Using `git clone` always preserves the correct encoding.
 
-**FileZilla users (uploading):**
-1. Go to **Edit → Settings → Transfers → File Types**
-2. Set Default transfer type to **Binary**
-3. Or: top menu → **Transfer → Transfer Type → Binary**
+---
 
-> **💡 Tip:** `git clone` is always the safest way to download this project with correct encoding.
+## Requirements
 
-## 🛡️ Requirements
+- Windows 10 / 11
+- PowerShell 5.1 or later
+- Administrator privileges
 
-- **Windows 10/11**
-- **PowerShell 5.1+**
-- **Administrator privileges** (required for system cleaning and port killing)
+---
 
-## 👤 Author
+## Author
 
 **YusufEren97** — [yusuferenseyrek.com.tr](https://yusuferenseyrek.com.tr)
 
-## 📄 License
+## License
 
 This project is open source. Feel free to use and modify.
