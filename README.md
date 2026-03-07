@@ -1,18 +1,25 @@
+<div align="center">
+
 # Toolbox
 
-<p align="center">
-  <img src="image/toolbox.png" alt="Toolbox" width="600">
-</p>
+<img src="image/toolbox.png" alt="Toolbox" width="600"/>
 
-A lightweight Windows utility toolkit that runs directly from PowerShell — no installation required. Provides port management, system cleaning, and Windows/Office activation in a single interactive menu.
+### Lightweight Windows Utility Toolkit
 
-Available in **English** and **Turkish**.
+[![Version](https://img.shields.io/badge/Version-1.0-blue.svg)](https://github.com/YusufEren97/windows-toolbox)
+[![License](https://img.shields.io/badge/License-Open_Source-green.svg)](https://github.com/YusufEren97/windows-toolbox)
+[![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-purple.svg)](https://docs.microsoft.com/powershell/)
+[![Windows](https://img.shields.io/badge/Windows-10%2F11-0078D6.svg?logo=windows)](https://www.microsoft.com/windows)
+
+**Run powerful utilities directly from PowerShell — no installation required.**
+
+[English](#modules) • [Türkçe](#modüller)
+
+</div>
 
 ---
 
 ## Quick Start
-
-Paste one of the following commands into PowerShell and press Enter:
 
 ```powershell
 irm yusuferenseyrek.com.tr/toolbox | iex
@@ -23,6 +30,8 @@ irm yusuferenseyrek.com.tr/toolbox | iex
 ---
 
 ## Modules
+
+<div align="center">
 
 ### Port Killer v1.0
 
@@ -37,6 +46,12 @@ Manage and terminate processes occupying network ports.
 
 <img src="image/portkiller.png" alt="Port Killer" width="500">
 
+</div>
+
+---
+
+<div align="center">
+
 ### System Cleaner v1.1
 
 Free up disk space and flush caches with three cleaning modes.
@@ -49,9 +64,21 @@ Free up disk space and flush caches with three cleaning modes.
 
 <img src="image/cleaner.png" alt="System Cleaner" width="500">
 
+</div>
+
+---
+
+<div align="center">
+
 ### Windows/Office Activation (MAS)
 
 Launches [Microsoft Activation Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) for Windows and Office activation.
+
+</div>
+
+---
+
+<div align="center">
 
 ### WinUtil — System Optimization
 
@@ -61,6 +88,8 @@ Runs [Chris Titus Tech's WinUtil](https://github.com/ChrisTitusTech/winutil) for
 |---------|--------|
 | Turkish (TR) | [YusufEren97/WinUtil-Turkish-Edition](https://github.com/YusufEren97/WinUtil-Turkish-Edition) |
 | English (EN) | [ChrisTitusTech/winutil](https://github.com/ChrisTitusTech/winutil) |
+
+</div>
 
 ---
 
@@ -87,30 +116,46 @@ toolbox/
 
 ## Encoding & Compatibility
 
+> [!IMPORTANT]
+> Always use `git clone` to download this project. This is the only method that guarantees correct UTF-8 encoding for all files.
+>
+> ```
+> git clone https://github.com/YusufEren97/windows-toolbox.git
+> ```
+
 Both versions include a built-in UTF-8 encoding fix. The toolbox works correctly on **PowerShell 5.1 (Windows PowerShell)** and **PowerShell 7+** without any additional configuration.
 
-If you download the project as a ZIP or via FTP and the ASCII art appears broken:
+If you downloaded via ZIP or FTP and the ASCII art appears broken:
 
 - **Notepad++** — Encoding → Convert to UTF-8, then save.
 - **VS Code** — Click the encoding label in the status bar → Reopen with Encoding → UTF-8.
 - **FileZilla** — Set the transfer type to **Binary** under Edit → Settings → Transfers → File Types.
 
-> Using `git clone` always preserves the correct encoding.
-
 ---
 
 ## Requirements
 
-- Windows 10 / 11
-- PowerShell 5.1 or later
-- Administrator privileges
+| Component | Requirement |
+|-----------|-------------|
+| **OS** | Windows 10 / 11 |
+| **PowerShell** | 5.1 or later |
+| **Privileges** | Administrator |
 
 ---
-
-## Author
-
-**YusufEren97** — [yusuferenseyrek.com.tr](https://yusuferenseyrek.com.tr)
 
 ## License
 
 This project is open source. Feel free to use and modify.
+
+---
+
+<div align="center">
+
+## Author
+
+| <img src="https://github.com/YusufEren97.png" width="120" style="border-radius:50%"/> |
+|:---:|
+| **Yusuf Eren Seyrek** |
+| [![GitHub](https://img.shields.io/badge/GitHub-YusufEren97-black?logo=github)](https://github.com/YusufEren97) |
+
+</div>
