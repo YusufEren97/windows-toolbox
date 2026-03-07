@@ -53,6 +53,15 @@ Free up disk space and flush caches with three cleaning modes.
 
 Launches [Microsoft Activation Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) for Windows and Office activation.
 
+### WinUtil — System Optimization
+
+Runs [Chris Titus Tech's WinUtil](https://github.com/ChrisTitusTech/winutil) for Windows debloating, tweaks, and system optimization.
+
+| Version | Source |
+|---------|--------|
+| Turkish (TR) | [YusufEren97/WinUtil-Turkish-Edition](https://github.com/YusufEren97/WinUtil-Turkish-Edition) |
+| English (EN) | [ChrisTitusTech/winutil](https://github.com/ChrisTitusTech/winutil) |
+
 ---
 
 ## Project Structure

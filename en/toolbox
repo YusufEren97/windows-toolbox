@@ -34,11 +34,12 @@ do {
     Write-Host "   [1] Port Killer V1.0" -ForegroundColor White
     Write-Host "   [2] System Cleaner V1.1" -ForegroundColor White
     Write-Host "   [3] Windows/Office Activation (MAS)" -ForegroundColor Cyan
-    Write-Host "   [4] Exit" -ForegroundColor Red
+    Write-Host "   [4] WinUtil - System Optimization" -ForegroundColor Magenta
+    Write-Host "   [5] Exit" -ForegroundColor Red
     Write-Host ""
     
     Write-Host "  --------------------------------------------------" -ForegroundColor DarkGray
-    $choice = Read-Host "   Your choice (1-4)"
+    $choice = Read-Host "   Your choice (1-5)"
 
     switch ($choice) {
         "1" {
@@ -69,6 +70,13 @@ do {
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         "4" {
+            Write-Host "`n   [+] " -NoNewline -ForegroundColor Magenta
+            Write-Host "Launching WinUtil..." -ForegroundColor Gray
+            irm christitus.com/win | iex
+            Write-Host "`n   Press any key to return to menu..." -ForegroundColor Gray
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        "5" {
             Write-Host "`n   [!] Shutting down Toolbox..." -ForegroundColor Red
             Start-Sleep -Seconds 1
             break
@@ -78,4 +86,4 @@ do {
             Start-Sleep -Seconds 1
         }
     }
-} while ($choice -ne "4")
+} while ($choice -ne "5")
