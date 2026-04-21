@@ -12,48 +12,51 @@ cd /d "%~dp0"
 chcp 65001 >nul 2>&1
 title Sistem Temizleyici V1.1
 color 0B
-mode con cols=90 lines=40
+mode con cols=105 lines=40
 
 :menu
 cls
 echo.
-echo   ██████╗██╗     ███████╗ █████╗ ███╗   ██╗███████╗██████╗
-echo  ██╔════╝██║     ██╔════╝██╔══██╗████╗  ██║██╔════╝██╔══██╗
-echo  ██║     ██║     █████╗  ███████║██╔██╗ ██║█████╗  ██████╔╝
-echo  ██║     ██║     ██╔══╝  ██╔══██║██║╚██╗██║██╔══╝  ██╔══██╗
-echo  ╚██████╗███████╗███████╗██║  ██║██║ ╚████║███████╗██║  ██║
-echo   ╚═════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+echo                ______   __        ________   ______   __    __  ________  _______  
+echo               /      \ /  ^|      /        ^| /      \ /  \  /  ^|/        ^|/       \ 
+echo              /$$$$$$  ^|$$ ^|      $$$$$$$$/ /$$$$$$  ^|$$  \ $$ ^|$$$$$$$$/ $$$$$$$  ^|
+echo              $$ ^|  $$/ $$ ^|      $$ ^|__    $$ ^|__$$ ^|$$$  \$$ ^|$$ ^|__    $$ ^|__$$ ^|
+echo              $$ ^|      $$ ^|      $$    ^|   $$    $$ ^|$$$$  $$ ^|$$    ^|   $$    $$^< 
+echo              $$ ^|   __ $$ ^|      $$$$$/    $$$$$$$$ ^|$$ $$ $$ ^|$$$$$/    $$$$$$$  ^|
+echo              $$ \__/  ^|$$ ^|_____ $$ ^|_____ $$ ^|  $$ ^|$$ ^|$$$$ ^|$$ ^|_____ $$ ^|  $$ ^|
+echo              $$    $$/ $$       ^|$$       ^|$$ ^|  $$ ^|$$ ^| $$$ ^|$$       ^|$$ ^|  $$ ^|
+echo               $$$$$$/  $$$$$$$$/ $$$$$$$$/ $$/   $$/ $$/   $$/ $$$$$$$$/ $$/   $$/ 
 echo.
-echo     ╔══════════════════════════════════════════════════════════════════════╗
-echo     ║          SİSTEM TEMİZLEME ARACI ^| BY YUSUFEREN97                     ║
-echo     ╚══════════════════════════════════════════════════════════════════════╝
+echo                 ========================================================================
+echo                 ^|          SISTEM TEMIZLEME ARACI ^| BY YUSUFEREN97                     ^|
+echo                 ========================================================================
 echo.
-echo    [1] Hızlı Temizlik
-echo    [2] Detaylı Temizlik
-echo    [3] Özel Temizlik
-echo    [4] Çıkış
+echo    [1] Hizli Temizlik
+echo    [2] Detayli Temizlik
+echo    [3] Ozel Temizlik
+echo    [4] Cikis
 echo.
-echo    Hızlı  : Temp, Prefetch, Çöp Kutusu, DNS
-echo    Detaylı: Tüm alanlar temizlenir
-echo    Özel   : İstediğiniz alanları seçersiniz
+echo    Hizli  : Temp, Prefetch, Cop Kutusu, DNS
+echo    Detayli: Tum alanlar temizlenir
+echo    Ozel   : Istediginiz alanlari secersiniz
 echo.
-set /p secim="  » Seçiminizi yapın (1-4): "
+set /p secim="  > Seciminizi yapin (1-4): "
 
 if "%secim%"=="1" goto hizli
 if "%secim%"=="2" goto detayli
 if "%secim%"=="3" goto ozel
 if "%secim%"=="4" exit
 echo.
-echo   [!] Hatalı seçim, tekrar deneyin.
+echo   [!] Hatali secim, tekrar deneyin.
 timeout /t 1 >nul
 goto menu
 
 :hizli
 cls
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                     HIZLI TEMİZLİK BAŞLATILDI                        ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                     HIZLI TEMIZLIK BASLATILDI                        ^|
+echo     ========================================================================
 echo.
 
 call :clean_user_temp
@@ -67,9 +70,9 @@ goto bitti
 :detayli
 cls
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                    DETAYLI TEMİZLİK BAŞLATILDI                       ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                    DETAYLI TEMIZLIK BASLATILDI                       ^|
+echo     ========================================================================
 echo.
 
 call :clean_user_temp
@@ -85,28 +88,28 @@ goto bitti
 :ozel
 cls
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                      ÖZEL TEMİZLİK SEÇİMİ                            ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                      OZEL TEMIZLIK SECIMI                            ^|
+echo     ========================================================================
 echo.
 echo    [1] User Temp
 echo    [2] Windows Temp
 echo    [3] Prefetch
-echo    [4] Çöp Kutusu
-echo    [5] DNS Önbelleği
-echo    [6] Hata Raporları (WER)
-echo    [7] Sistem Logları
+echo    [4] Cop Kutusu
+echo    [5] DNS Onbellegi
+echo    [6] Hata Raporlari (WER)
+echo    [7] Sistem Loglari
 echo.
-echo    Birden fazla seçim yapabilirsiniz (boşlukla ayırın)
-echo    Örnek: 1 3 5
+echo    Birden fazla secim yapabilirsiniz (boslukla ayirin)
+echo    Ornek: 1 3 5
 echo.
-set /p ozel_secim="  » Seçiminiz: "
+set /p ozel_secim="  > Seciminiz: "
 
 cls
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                     ÖZEL TEMİZLİK BAŞLATILDI                         ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                     OZEL TEMIZLIK BASLATILDI                         ^|
+echo     ========================================================================
 echo.
 
 for %%i in (%ozel_secim%) do (
@@ -123,11 +126,11 @@ goto bitti
 
 :bitti
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                  TEMİZLİK BAŞARIYLA TAMAMLANDI!                      ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                  TEMIZLIK BASARIYLA TAMAMLANDI!                      ^|
+echo     ========================================================================
 echo.
-echo   Menüye dönmek için bir tuşa basın...
+echo    Menuye donmek icin bir tusa basin...
 pause >nul
 goto menu
 
@@ -154,19 +157,19 @@ del /q /s /f "C:\Windows\Prefetch\*.*" >nul 2>&1
 goto :eof
 
 :clean_recycle
-echo   [+] Çöp kutusu boşaltılıyor...
+echo   [+] Cop kutusu bosaltiliyor...
 for %%d in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
     if exist "%%d:\$Recycle.Bin" rd /s /q "%%d:\$Recycle.Bin" >nul 2>&1
 )
 goto :eof
 
 :clean_dns
-echo   [+] DNS önbelleği temizleniyor...
+echo   [+] DNS onbellegi temizleniyor...
 ipconfig /flushdns >nul 2>&1
 goto :eof
 
 :clean_wer
-echo   [+] Hata raporları (WER) temizleniyor...
+echo   [+] Hata raporlari (WER) temizleniyor...
 if exist "C:\ProgramData\Microsoft\Windows\WER" (
     del /q /s /f "C:\ProgramData\Microsoft\Windows\WER\*.*" >nul 2>&1
     for /d %%x in ("C:\ProgramData\Microsoft\Windows\WER\*") do rd /s /q "%%x" >nul 2>&1
@@ -174,6 +177,6 @@ if exist "C:\ProgramData\Microsoft\Windows\WER" (
 goto :eof
 
 :clean_logs
-echo   [+] Sistem logları temizleniyor...
+echo   [+] Sistem loglari temizleniyor...
 del /q /s /f "C:\Windows\*.log" >nul 2>&1
 goto :eof

@@ -13,7 +13,7 @@
 
 **Run powerful utilities directly from PowerShell — no installation required.**
 
-[English](#modules) • [Türkçe](#modüller)
+[English](#modules) • [Türkçe](#moduller)
 
 </div>
 
@@ -114,22 +114,13 @@ toolbox/
 
 ---
 
-## Encoding & Compatibility
+## Compatibility
 
-> [!IMPORTANT]
-> Always use `git clone` to download this project. This is the only method that guarantees correct UTF-8 encoding for all files.
->
-> ```
-> git clone https://github.com/YusufEren97/windows-toolbox.git
-> ```
+All scripts use **pure ASCII characters only** — no special Unicode or box-drawing characters. This means:
 
-Both versions include a built-in UTF-8 encoding fix. The toolbox works correctly on **PowerShell 5.1 (Windows PowerShell)** and **PowerShell 7+** without any additional configuration.
-
-If you downloaded via ZIP or FTP and the ASCII art appears broken:
-
-- **Notepad++** — Encoding → Convert to UTF-8, then save.
-- **VS Code** — Click the encoding label in the status bar → Reopen with Encoding → UTF-8.
-- **FileZilla** — Set the transfer type to **Binary** under Edit → Settings → Transfers → File Types.
+- ✅ Works with `git clone`, ZIP download, or direct `irm` fetch
+- ✅ No encoding issues on any locale or code page
+- ✅ Compatible with **PowerShell 5.1** and **PowerShell 7+**
 
 ---
 

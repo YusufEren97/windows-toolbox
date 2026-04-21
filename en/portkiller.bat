@@ -12,28 +12,31 @@ cd /d "%~dp0"
 chcp 65001 >nul 2>&1
 title Port Killer V1.0
 color 0C
-mode con cols=90 lines=46
+mode con cols=105 lines=46
 
 :menu
 cls
 echo.
-echo  ██████╗  ██████╗ ██████╗ ████████╗    ██╗  ██╗██╗██╗     ██╗     ███████╗██████╗
-echo  ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝    ██║ ██╔╝██║██║     ██║     ██╔════╝██╔══██╗
-echo  ██████╔╝██║   ██║██████╔╝   ██║       █████╔╝ ██║██║     ██║     █████╗  ██████╔╝
-echo  ██╔═══╝ ██║   ██║██╔══██╗   ██║       ██╔═██╗ ██║██║     ██║     ██╔══╝  ██╔══██╗
-echo  ██║     ╚██████╔╝██║  ██║   ██║       ██║  ██╗██║███████╗███████╗███████╗██║  ██║
-echo  ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝
+echo    _______    ______   _______   ________  __    __  ______  __        __        ________  _______  
+echo   /       \  /      \ /       \ /        ^|/  ^|  /  ^|/      ^|/  ^|      /  ^|      /        ^|/       \ 
+echo   $$$$$$$  ^|/$$$$$$  ^|$$$$$$$  ^|$$$$$$$$/ $$ ^| /$$/ $$$$$$/ $$ ^|      $$ ^|      $$$$$$$$/ $$$$$$$  ^|
+echo   $$ ^|__$$ ^|$$ ^|  $$ ^|$$ ^|__$$ ^|   $$ ^|   $$ ^|/$$/    $$ ^|  $$ ^|      $$ ^|      $$ ^|__    $$ ^|__$$ ^|
+echo   $$    $$/ $$ ^|  $$ ^|$$    $$^<    $$ ^|   $$  $$^<     $$ ^|  $$ ^|      $$ ^|      $$    ^|   $$    $$^< 
+echo   $$$$$$$/  $$ ^|  $$ ^|$$$$$$$  ^|   $$ ^|   $$$$$  \    $$ ^|  $$ ^|      $$ ^|      $$$$$/    $$$$$$$  ^|
+echo   $$ ^|      $$ \__$$ ^|$$ ^|  $$ ^|   $$ ^|   $$ ^|$$  \  _$$ ^|_ $$ ^|_____ $$ ^|_____ $$ ^|_____ $$ ^|  $$ ^|
+echo   $$ ^|      $$    $$/ $$ ^|  $$ ^|   $$ ^|   $$ ^| $$  ^|/ $$   ^|$$       ^|$$       ^|$$       ^|$$ ^|  $$ ^|
+echo   $$/        $$$$$$/  $$/   $$/    $$/    $$/   $$/ $$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$/   $$/ 
 echo.
-echo     ╔══════════════════════════════════════════════════════════════════════╗
-echo     ║        PORT MANAGEMENT AND CLEANUP TOOL ^| BY YUSUFEREN97             ║
-echo     ╚══════════════════════════════════════════════════════════════════════╝
+echo                 ========================================================================
+echo                 ^|        PORT MANAGEMENT AND CLEANUP TOOL ^| BY YUSUFEREN97             ^|
+echo                 ========================================================================
 echo.
 echo    [1] Kill Port
 echo    [2] Query Port
 echo    [3] List All Open Ports
 echo    [4] Exit
 echo.
-set /p choice="  » Make your choice (1-4): "
+set /p choice="  > Make your choice (1-4): "
 
 if "%choice%"=="1" goto kill_port
 if "%choice%"=="2" goto query_port
@@ -47,12 +50,12 @@ goto menu
 :list_ports
 cls
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                    ALL LISTENING PORTS                               ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                    ALL LISTENING PORTS                               ^|
+echo     ========================================================================
 echo.
 echo    Proto   Local Address                  PID
-echo    ─────   ─────────────                  ───
+echo    -----   -------------                  ---
 setlocal enabledelayedexpansion
 for /f "tokens=1,2,5" %%a in ('netstat -aon ^| findstr LISTENING') do (
     set "addr=%%b                              "
@@ -67,17 +70,17 @@ goto menu
 :kill_port
 cls
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                          KILL PORT                                   ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                          KILL PORT                                   ^|
+echo     ========================================================================
 echo.
 set "port="
-set /p port="  » Enter the PORT number to kill: "
+set /p port="  > Enter the PORT number to kill: "
 if "%port%"=="" goto menu
 echo %port%| findstr /R "^[0-9]*$" >nul 2>&1
 if errorlevel 1 (
     echo.
-    echo   [✗] Error: Please enter numbers only!
+    echo   [X] Error: Please enter numbers only!
     echo.
     pause
     goto menu
@@ -104,7 +107,7 @@ for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":%port% " ^| findstr LISTENI
 
 if "%pid%"=="" (
     echo.
-    echo   [✗] No active process found using port %port%.
+    echo   [X] No active process found using port %port%.
     echo.
     pause
     goto menu
@@ -115,14 +118,14 @@ for /f "tokens=1" %%n in ('tasklist /FI "PID eq %pid%" /NH /FO CSV 2^>nul ^| fin
     set "pname=%%~n"
 )
 
-echo   [✓] Detected PID       : %pid%
-echo   [✓] Process Name       : %pname%
+echo   [v] Detected PID       : %pid%
+echo   [v] Process Name       : %pname%
 echo.
 echo   [~] Terminating...
 
 taskkill /F /PID %pid% >nul 2>&1
 echo.
-echo   [✓] Port %port% successfully killed! PID: %pid%
+echo   [v] Port %port% successfully killed! PID: %pid%
 
 echo.
 pause
@@ -131,17 +134,17 @@ goto menu
 :query_port
 cls
 echo.
-echo   ╔══════════════════════════════════════════════════════════════════════╗
-echo   ║                         QUERY PORT                                   ║
-echo   ╚══════════════════════════════════════════════════════════════════════╝
+echo     ========================================================================
+echo     ^|                         QUERY PORT                                   ^|
+echo     ========================================================================
 echo.
 set "port="
-set /p port="  » Enter the PORT number to query: "
+set /p port="  > Enter the PORT number to query: "
 if "%port%"=="" goto menu
 echo %port%| findstr /R "^[0-9]*$" >nul 2>&1
 if errorlevel 1 (
     echo.
-    echo   [✗] Error: Please enter numbers only!
+    echo   [X] Error: Please enter numbers only!
     echo.
     pause
     goto menu
@@ -155,7 +158,7 @@ for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":%port% " ^| findstr LISTENI
 
 if "%pid%"=="" (
     echo.
-    echo   [✗] No active process found using port %port%.
+    echo   [X] No active process found using port %port%.
     echo.
     pause
     goto menu
@@ -166,9 +169,9 @@ for /f "tokens=1" %%n in ('tasklist /FI "PID eq %pid%" /NH /FO CSV 2^>nul ^| fin
     set "pname=%%~n"
 )
 
-echo   [✓] Port              : %port%
-echo   [✓] PID               : %pid%
-echo   [✓] Process Name      : %pname%
+echo   [v] Port              : %port%
+echo   [v] PID               : %pid%
+echo   [v] Process Name      : %pname%
 echo.
 pause
 goto menu

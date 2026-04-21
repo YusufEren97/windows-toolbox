@@ -1,85 +1,74 @@
-# Windows PowerShell UTF-8 encoding fix
-if ($env:TOOLBOX_UTF8 -ne "1") {
-    $env:TOOLBOX_UTF8 = "1"
-    $bytes = (New-Object System.Net.WebClient).DownloadData("https://yusuferenseyrek.com.tr/toolbox")
-    $script = [System.Text.Encoding]::UTF8.GetString($bytes)
-    Invoke-Expression $script
-    $env:TOOLBOX_UTF8 = $null
-    return
-}
-$env:TOOLBOX_UTF8 = $null
-
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-[Console]::InputEncoding = [System.Text.Encoding]::UTF8
-
 do {
     Clear-Host
     $ascii = @'
-  ████████╗ ██████╗  ██████╗ ██╗     ██████╗  ██████╗ ██╗  ██╗
-  ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔══██╗██╔═══██╗╚██╗██╔╝
-     ██║   ██║   ██║██║   ██║██║     ██████╔╝██║   ██║ ╚███╔╝ 
-     ██║   ██║   ██║██║   ██║██║     ██╔══██╗██║   ██║ ██╔██╗ 
-     ██║   ╚██████╔╝╚██████╔╝███████╗██████╔╝╚██████╔╝██╔╝ ██╗
-     ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
+                  ________  ______    ______   __        _______    ______   __    __ 
+                 /        |/      \  /      \ /  |      /       \  /      \ /  |  /  |
+                 $$$$$$$$//$$$$$$  |/$$$$$$  |$$ |      $$$$$$$  |/$$$$$$  |$$ |  $$ |
+                    $$ |  $$ |  $$ |$$ |  $$ |$$ |      $$ |__$$ |$$ |  $$ |$$  \/$$/ 
+                    $$ |  $$ |  $$ |$$ |  $$ |$$ |      $$    $$< $$ |  $$ | $$  $$<  
+                    $$ |  $$ |  $$ |$$ |  $$ |$$ |      $$$$$$$  |$$ |  $$ |  $$$$  \ 
+                    $$ |  $$ \__$$ |$$ \__$$ |$$ |_____ $$ |__$$ |$$ \__$$ | $$ /$$  |
+                    $$ |  $$    $$/ $$    $$/ $$       |$$    $$/ $$    $$/ $$ |  $$ |
+                    $$/    $$$$$$/   $$$$$$/  $$$$$$$$/ $$$$$$$/   $$$$$$/  $$/   $$/ 
 '@
     
     Write-Host $ascii -ForegroundColor Yellow
-    Write-Host "               [ YusufEren97 tarafından yapıldı ]" -ForegroundColor Gray
-    Write-Host "  --------------------------------------------------" -ForegroundColor DarkGray
+    Write-Host "                   [ YusufEren97 tarafindan yapildi ]" -ForegroundColor Gray
+    Write-Host "                  --------------------------------------------------" -ForegroundColor DarkGray
     Write-Host ""
     
     Write-Host "   [1] Port Killer V1.0" -ForegroundColor White
     Write-Host "   [2] Sistem Temizleyici V1.1" -ForegroundColor White
     Write-Host "   [3] Windows/Office Aktivasyon (MAS)" -ForegroundColor Cyan
     Write-Host "   [4] WinUtil - Sistem Optimizasyon (TR)" -ForegroundColor Magenta
-    Write-Host "   [5] Çıkış" -ForegroundColor Red
+    Write-Host "   [5] Cikis" -ForegroundColor Red
     Write-Host ""
     
     Write-Host "  --------------------------------------------------" -ForegroundColor DarkGray
-    $choice = Read-Host "   Seçiminiz (1-5)"
+    $choice = Read-Host "   Seciminiz (1-5)"
 
     switch ($choice) {
         "1" {
             $path = "$env:temp\portkiller.bat"
             $url = "https://yusuferenseyrek.com.tr/portkiller.bat"
             Write-Host "`n   [+] " -NoNewline -ForegroundColor Green
-            Write-Host "Port Killer indiriliyor ve başlatılıyor..." -ForegroundColor Gray
+            Write-Host "Port Killer indiriliyor ve baslatiliyor..." -ForegroundColor Gray
             Invoke-WebRequest $url -OutFile $path
             Start-Process $path -Wait -Verb RunAs
-            Write-Host "`n   İşlem tamamlandı. Devam etmek için bir tuşa basın..." -ForegroundColor Gray
+            Write-Host "`n   Islem tamamlandi. Devam etmek icin bir tusa basin..." -ForegroundColor Gray
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         "2" {
             $path = "$env:temp\cleaner.bat"
             $url = "https://yusuferenseyrek.com.tr/cleaner.bat"
             Write-Host "`n   [+] " -NoNewline -ForegroundColor Green
-            Write-Host "Sistem Temizleyici indiriliyor ve başlatılıyor..." -ForegroundColor Gray
+            Write-Host "Sistem Temizleyici indiriliyor ve baslatiliyor..." -ForegroundColor Gray
             Invoke-WebRequest $url -OutFile $path
             Start-Process $path -Wait -Verb RunAs
-            Write-Host "`n   İşlem tamamlandı. Devam etmek için bir tuşa basın..." -ForegroundColor Gray
+            Write-Host "`n   Islem tamamlandi. Devam etmek icin bir tusa basin..." -ForegroundColor Gray
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         "3" {
             Write-Host "`n   [+] " -NoNewline -ForegroundColor Cyan
-             Write-Host "Aktivasyon Scripti (MAS) çalıştırılıyor..." -ForegroundColor Gray
+             Write-Host "Aktivasyon Scripti (MAS) calistiriliyor..." -ForegroundColor Gray
             irm https://get.activated.win | iex
-            Write-Host "`n   Menüye dönmek için bir tuşa basın..." -ForegroundColor Gray
+            Write-Host "`n   Menuye donmek icin bir tusa basin..." -ForegroundColor Gray
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         "4" {
             Write-Host "`n   [+] " -NoNewline -ForegroundColor Magenta
-            Write-Host "WinUtil (Türkçe) başlatılıyor..." -ForegroundColor Gray
+            Write-Host "WinUtil (Turkce) baslatiliyor..." -ForegroundColor Gray
             irm "https://raw.githubusercontent.com/YusufEren97/WinUtil-Turkish-Edition/main/winutil.ps1" | iex
-            Write-Host "`n   Menüye dönmek için bir tuşa basın..." -ForegroundColor Gray
+            Write-Host "`n   Menuye donmek icin bir tusa basin..." -ForegroundColor Gray
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         "5" {
-            Write-Host "`n   [!] Toolbox sonlandırılıyor..." -ForegroundColor Red
+            Write-Host "`n   [!] Toolbox sonlandiriliyor..." -ForegroundColor Red
             Start-Sleep -Seconds 1
             break
         }
         Default {
-            Write-Host "`n   [!] Hatalı seçim, tekrar deneyin." -ForegroundColor Red
+            Write-Host "`n   [!] Hatali secim, tekrar deneyin." -ForegroundColor Red
             Start-Sleep -Seconds 1
         }
     }
