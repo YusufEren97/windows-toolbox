@@ -21,11 +21,12 @@ $$$$$$$$//$$$$$$  |/$$$$$$  |$$ |      $$$$$$$  |/$$$$$$  |$$ |  $$ |
     Write-Host "   [2] System Cleaner V1.1" -ForegroundColor White
     Write-Host "   [3] Windows/Office Activation (MAS)" -ForegroundColor Cyan
     Write-Host "   [4] WinUtil - System Optimization" -ForegroundColor Magenta
-    Write-Host "   [5] Exit" -ForegroundColor Red
+    Write-Host "   [5] Office Tool Plus - Office Download/Install" -ForegroundColor Blue
+    Write-Host "   [6] Exit" -ForegroundColor Red
     Write-Host ""
-    
+
     Write-Host "  --------------------------------------------------" -ForegroundColor DarkGray
-    $choice = Read-Host "   Your choice (1-5)"
+    $choice = Read-Host "   Your choice (1-6)"
 
     switch ($choice) {
         "1" {
@@ -63,6 +64,57 @@ $$$$$$$$//$$$$$$  |/$$$$$$  |$$ |      $$$$$$$  |/$$$$$$  |$$ |  $$ |
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         "5" {
+            Write-Host "`n   [+] " -NoNewline -ForegroundColor Blue
+            Write-Host "Preparing Office Tool Plus..." -ForegroundColor Gray
+            try {
+                $arch = if ($env:PROCESSOR_ARCHITECTURE -eq "ARM64") { "arm64" } else { "x64" }
+                $rel = Invoke-RestMethod -Uri "https://api.github.com/repos/YerongAI/Office-Tool/releases/latest" -Headers @{ "User-Agent" = "Toolbox" }
+                $asset = $rel.assets | Where-Object { $_.name -like "Office_Tool_with_runtime_*_$arch.zip" } | Select-Object -First 1
+                if (-not $asset) { throw "No package found for architecture: $arch" }
+
+                $dest = "$env:temp\OfficeToolPlus"
+                $zip = "$env:temp\$($asset.name)"
+                $exe = Get-ChildItem $dest -Recurse -Filter "Office Tool Plus.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+
+                if (-not $exe) {
+                    Write-Host "   [i] Version: $($rel.tag_name)  -  Size: $([math]::Round($asset.size / 1MB)) MB" -ForegroundColor DarkGray
+                    Write-Host "   [i] Downloading, please wait..." -ForegroundColor DarkGray
+                    $oldProgress = $ProgressPreference
+                    $ProgressPreference = "SilentlyContinue"
+                    Invoke-WebRequest $asset.browser_download_url -OutFile $zip
+                    $ProgressPreference = $oldProgress
+                    if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
+                    Expand-Archive -Path $zip -DestinationPath $dest -Force
+                    Remove-Item $zip -Force -ErrorAction SilentlyContinue
+                    $exe = Get-ChildItem $dest -Recurse -Filter "Office Tool Plus.exe" | Select-Object -First 1
+                }
+                if (-not $exe) { throw "Office Tool Plus.exe not found." }
+
+                Write-Host ""
+                Write-Host "   [1] Open the GUI (recommended)" -ForegroundColor White
+                Write-Host "   [2] Run a console command" -ForegroundColor White
+                $otpMode = Read-Host "   Your choice (1-2)"
+
+                if ($otpMode -eq "2") {
+                    $console = Join-Path $exe.DirectoryName "Office Tool Plus.Console.exe"
+                    Write-Host "`n   Example: deploy /add O365ProPlusRetail_en-us /edition 64 /channel Current" -ForegroundColor DarkGray
+                    $otpCmd = Read-Host "   Command"
+                    if ([string]::IsNullOrWhiteSpace($otpCmd)) {
+                        Write-Host "   [!] No command entered." -ForegroundColor Red
+                    } else {
+                        Start-Process $console -ArgumentList $otpCmd -Wait -Verb RunAs
+                    }
+                } else {
+                    Write-Host "`n   [+] Launching..." -ForegroundColor Green
+                    Start-Process $exe.FullName -Wait -Verb RunAs
+                }
+            } catch {
+                Write-Host "   [!] Error: $($_.Exception.Message)" -ForegroundColor Red
+            }
+            Write-Host "`n   Press any key to return to menu..." -ForegroundColor Gray
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        "6" {
             Write-Host "`n   [!] Shutting down Toolbox..." -ForegroundColor Red
             Start-Sleep -Seconds 1
             break
@@ -72,4 +124,4 @@ $$$$$$$$//$$$$$$  |/$$$$$$  |$$ |      $$$$$$$  |/$$$$$$  |$$ |  $$ |
             Start-Sleep -Seconds 1
         }
     }
-} while ($choice -ne "5")
+} while ($choice -ne "6")

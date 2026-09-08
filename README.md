@@ -93,6 +93,34 @@ Runs [Chris Titus Tech's WinUtil](https://github.com/ChrisTitusTech/winutil) for
 
 ---
 
+<div align="center">
+
+### Office Tool Plus — Office Download & Install
+
+Fetches the latest portable [Office Tool Plus](https://www.officetool.plus/) release from
+[GitHub](https://github.com/YerongAI/Office-Tool/releases), extracts it to `%TEMP%\OfficeToolPlus`
+and runs it — nothing is installed on the system.
+
+| Mode | Description |
+|------|-------------|
+| GUI | Launches `Office Tool Plus.exe` for point-and-click product selection |
+| Console | Passes your command straight to `Office Tool Plus.Console.exe` |
+
+The `with_runtime` build is used (x64 / arm64 auto-detected), so no separate .NET runtime is required.
+Once downloaded, the copy in `%TEMP%` is reused on later runs.
+
+Console example:
+
+```
+deploy /add O365ProPlusRetail_en-us /edition 64 /channel Current
+```
+
+See the [deploy command reference](https://www.officetool.plus/usage/command/deploy.html) for all arguments.
+
+</div>
+
+---
+
 ## Project Structure
 
 ```
