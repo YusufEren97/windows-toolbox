@@ -22,7 +22,7 @@
 ## Quick Start
 
 ```powershell
-irm yusuferenseyrek.com.tr/toolbox | iex
+irm yusuferen97.me/toolbox | iex
 ```
 
 > Requires **Administrator privileges** for full functionality.
